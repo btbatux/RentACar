@@ -1,4 +1,5 @@
 #Araç Kiralama Projesi Bilgilendirme
+
 Java ve Swing teknolojilerini kullanarak geliştirilecek araç kiralama projesi, java programlama bilgilerinizi pekiştirmenin yanında aynı zamanda veritabanı işlemleri ve kullanıcı arayüzü geliştirme konularında da önemli deneyimler kazanmanızı sağlayacak. Swing kullanarak arayüz tasarlamayı bu dersle birlikte pratik ediyor olacaksınız.
 
 Swing, Java programlama dilinde GUI (Graphical User Interface - Grafiksel Kullanıcı Arayüzü) bileşenlerini oluşturmak ve yönetmek için kullanılan bir kütüphanedir. Kullanıcı arayüzü oluşturmak için geniş bir bileşen seti sunar. Bu bileşenler arasında düğmeler, metin alanları, liste kutuları, tablolar, menüler ve çeşitli diğer arayüz öğeleri bulunur. Swing, bu bileşenleri düzenlemek, olayları işlemek ve kullanıcı etkileşimlerini yönetmek için gelişmiş bir olay tabanlı model sunar.
