@@ -36,6 +36,12 @@ public class AdminView extends Layout {
         this.lbl_welcome.setText("Hoşgeldiniz " + user.getUsername());
 
         loadBrandTable();
+        loadBrandComponent();
+
+        this.tbl_brand.setComponentPopupMenu(jBrandMenu);
+    }
+
+    public void loadBrandComponent() {
         this.tbl_brand.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) { //Tıklanılan satırın satır bilgisini al.
@@ -44,34 +50,28 @@ public class AdminView extends Layout {
             }
         });
 
-
         this.jBrandMenu = new JPopupMenu();
         //Tıklanılan menuye göre işlemler yap.
         this.jBrandMenu.add("Yeni").addActionListener(e ->{
-        BrandView brandView = new BrandView(null);
-        brandView.addWindowListener(new WindowAdapter() { //markaları güncelledikten sonra tabloyu yenile
-            @Override
-            public void windowClosed(WindowEvent e) {
-                super.windowClosed(e);
-                loadBrandTable();
-            }
-        });
-        });
-
-        this.jBrandMenu.add("Güncelle").addActionListener(e -> {
-                int selectBrandId = Integer.parseInt(tbl_brand.getValueAt(tbl_brand.getSelectedRow(),0).toString());
-                BrandView brandView = new BrandView(this.brandManager.getById(selectBrandId));
+            BrandView brandView = new BrandView(null);
             brandView.addWindowListener(new WindowAdapter() { //markaları güncelledikten sonra tabloyu yenile
                 @Override
                 public void windowClosed(WindowEvent e) {
                     super.windowClosed(e);
                     loadBrandTable();
-                }
-            });
+                }});
+        });
+        this.jBrandMenu.add("Güncelle").addActionListener(e -> {
+            int selectBrandId = Integer.parseInt(tbl_brand.getValueAt(tbl_brand.getSelectedRow(),0).toString());
+            BrandView brandView = new BrandView(this.brandManager.getById(selectBrandId));
+            brandView.addWindowListener(new WindowAdapter() { //markaları güncelledikten sonra tabloyu yenile
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    super.windowClosed(e);
+                    loadBrandTable();
+                }});
         });
         this.jBrandMenu.add("Sil");
-
-        this.tbl_brand.setComponentPopupMenu(jBrandMenu);
     }
 
     public void loadBrandTable() //colonları ve satırları listelemek için
