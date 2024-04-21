@@ -20,7 +20,7 @@ public class BrandDao {
 
     public ArrayList<Brand> findAll() {     //Tüm brand kayıtlarını görüntüle
         ArrayList<Brand> brandLists = new ArrayList<>();
-        String sqlQuery = "SELECT * FROM public.brand";
+        String sqlQuery = "SELECT * FROM public.brand ORDER BY brand_id ASC";
         try {
             ResultSet resultSet = this.connection.createStatement().executeQuery(sqlQuery);
             while (resultSet.next()) {
@@ -45,6 +45,37 @@ public class BrandDao {
             e.printStackTrace();
         }
         return true;
+    }
+    public boolean update(Brand brand) {
+        String query = "UPDATE public.brand SET brand_name = ? WHERE brand_id = ?";
+
+        try {
+            PreparedStatement pr = this.connection.prepareStatement(query);
+            pr.setString(1, brand.getName());
+            pr.setInt(2, brand.getId());
+            return pr.executeUpdate() != -1;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public Brand getById(int id) {
+        Brand obj = new Brand();
+        String query = "SELECT * FROM public.brand WHERE brand_id = ?";
+        try {
+            PreparedStatement pr = this.connection.prepareStatement(query);
+            pr.setInt(1,id);
+            ResultSet rs =  pr.executeQuery();
+            if(rs.next())
+            {
+                obj = this.match(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return obj;
     }
 
 

@@ -22,15 +22,25 @@ public class BrandView extends Layout {
         this.brand = brand;
 
 
+        if(brand != null)
+        {
+            fld_brand_name.setText(brand.getName()); // Güncellenmek istenen markanın textini fielda yazdır
+        }
+
+
         btn_brand_save.addActionListener(e -> {
             if (Helper.isFieldEmpty(this.fld_brand_name)) {
-                Helper.showMsg("fill");
-            } else
-            {
+                Helper.showMsg("fill"); //Alan boş ise uyar
+            }
+            else {
                 boolean result = true;
-                if (this.brand == null) {
+                if (this.brand == null) { // null ise insert işlemi yap
                     Brand obj = new Brand(fld_brand_name.getText());
                     result = this.brandManager.save(obj);
+                }
+                else { //null değilse update işlemi yap
+                    this.brand.setName(fld_brand_name.getText());
+                    result = this.brandManager.update(this.brand);
                 }
                 if (result) {
                     Helper.showMsg("done");
