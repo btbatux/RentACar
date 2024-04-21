@@ -21,6 +21,9 @@ public class Helper {
                 msg = "Kayıt bulunamadı.";
                 title = "Sonuç";
                 break;
+            case "error":
+                msg = "Hata Alındı.";
+                title = "Hata!";
             default:  //Varsayılan mesaj
                 msg = str;
                 title = "Mesaj";
